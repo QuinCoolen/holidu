@@ -1,89 +1,119 @@
 import Image from 'next/image'
 import listingImage from '../public/listing.jpg'
 import Link from 'next/link'
+import { GetStaticProps } from 'next'
 
-const listings = [
-  {
-    id: 1,
-    name: 'Large Modern House with Big Pool.',
-    href: '#',
-    price: '$1500',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
-    imageSrc: listingImage,
-    imageAlt: 'Large Modern House with Big Pool.',
-  },
-  {
-    id: 2,
-    name: 'Large Modern House with Big Pool.',
-    href: '#',
-    price: '$1500',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
-    imageSrc: listingImage,
-    imageAlt: 'Large Modern House with Big Pool.',
-  },
-  {
-    id: 3,
-    name: 'Large Modern House with Big Pool.',
-    href: '#',
-    price: '$1500',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
-    imageSrc: listingImage,
-    imageAlt: 'Large Modern House with Big Pool.',
-  },
-  {
-    id: 4,
-    name: 'Large Modern House with Big Pool.',
-    href: '#',
-    price: '$1500',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
-    imageSrc: listingImage,
-    imageAlt: 'Large Modern House with Big Pool.',
-  },
-  {
-    id: 5,
-    name: 'Large Modern House with Big Pool.',
-    href: '#',
-    price: '$1500',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
-    imageSrc: listingImage,
-    imageAlt: 'Large Modern House with Big Pool.',
-  },
-  {
-    id: 6,
-    name: 'Large Modern House with Big Pool.',
-    href: '#',
-    price: '$1500',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
-    imageSrc: listingImage,
-    imageAlt: 'Large Modern House with Big Pool.',
-  },
-  {
-    id: 7,
-    name: 'Large Modern House with Big Pool.',
-    href: '#',
-    price: '$1500',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
-    imageSrc: listingImage,
-    imageAlt: 'Large Modern House with Big Pool.',
-  },
-  {
-    id: 8,
-    name: 'Large Modern House with Big Pool.',
-    href: '#',
-    price: '$1500',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
-    imageSrc: listingImage,
-    imageAlt: 'Large Modern House with Big Pool.',
-  },
-]
+// const listings = [
+//   {
+//     id: 1,
+//     name: 'Large Modern House with Big Pool.',
+//     href: '#',
+//     price: '$1500',
+//     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
+//     imageSrc: listingImage,
+//     imageAlt: 'Large Modern House with Big Pool.',
+//   },
+//   {
+//     id: 2,
+//     name: 'Large Modern House with Big Pool.',
+//     href: '#',
+//     price: '$1500',
+//     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
+//     imageSrc: listingImage,
+//     imageAlt: 'Large Modern House with Big Pool.',
+//   },
+//   {
+//     id: 3,
+//     name: 'Large Modern House with Big Pool.',
+//     href: '#',
+//     price: '$1500',
+//     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
+//     imageSrc: listingImage,
+//     imageAlt: 'Large Modern House with Big Pool.',
+//   },
+//   {
+//     id: 4,
+//     name: 'Large Modern House with Big Pool.',
+//     href: '#',
+//     price: '$1500',
+//     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
+//     imageSrc: listingImage,
+//     imageAlt: 'Large Modern House with Big Pool.',
+//   },
+//   {
+//     id: 5,
+//     name: 'Large Modern House with Big Pool.',
+//     href: '#',
+//     price: '$1500',
+//     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
+//     imageSrc: listingImage,
+//     imageAlt: 'Large Modern House with Big Pool.',
+//   },
+//   {
+//     id: 6,
+//     name: 'Large Modern House with Big Pool.',
+//     href: '#',
+//     price: '$1500',
+//     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
+//     imageSrc: listingImage,
+//     imageAlt: 'Large Modern House with Big Pool.',
+//   },
+//   {
+//     id: 7,
+//     name: 'Large Modern House with Big Pool.',
+//     href: '#',
+//     price: '$1500',
+//     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
+//     imageSrc: listingImage,
+//     imageAlt: 'Large Modern House with Big Pool.',
+//   },
+//   {
+//     id: 8,
+//     name: 'Large Modern House with Big Pool.',
+//     href: '#',
+//     price: '$1500',
+//     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium illo iste dicta, repellat, odio sapiente eveniet libero praesentium, nemo voluptatem similique nam nostrum amet quos debitis odit quam ullam consequuntur!',
+//     imageSrc: listingImage,
+//     imageAlt: 'Large Modern House with Big Pool.',
+//   },
+// ]
 
-export default function Home() {
+interface Listing {
+  id: number;
+  description: string;
+  imageAlt: string;
+  imageSrc: string;
+  name: string;
+  price: number;
+}
+
+interface HomeProps {
+  listings: Listing[];
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  // Fetch data from an API
+  const response = await fetch('http://localhost:3000/api/listings')
+  const data = await response.json()
+
+  // Return the data as props
+  return {
+    props: {
+      listings: data
+    },
+  }
+}
+
+
+export default function Home({listings}: HomeProps) {
   return (
     <div className="p-16 grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:gap-x-8">
       {listings.map((listing) => (
         <Link key={listing.id} href={{pathname: `/listing/${listing.id}`, query: {listingName: 'test'}}} className="group">
           <div className="w-full aspect-w-1 aspect-h-1 rounded-lg overflow-hidden sm:aspect-w-2 sm:aspect-h-3">
             <Image
+              width={1000}
+              height={1000}
               src={listing.imageSrc}
               alt={listing.imageAlt}
               className="w-full h-full object-center object-cover group-hover:opacity-75"
