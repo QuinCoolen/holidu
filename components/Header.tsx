@@ -9,7 +9,7 @@ const navigation = [
     { name: 'My Listings', href: '#' },
 ]
   
-export default function Example() {
+export default function Header() {
     return (
       <header className="bg-cyan-600">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
