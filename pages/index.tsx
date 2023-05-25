@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import db from '../utils/db';
 import { GetServerSideProps } from 'next'
+import { QueryDocumentSnapshot } from 'firebase-admin/lib/firestore'
 
 interface Listing {
   id: string;
@@ -12,11 +14,14 @@ interface Listing {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await fetch('http://localhost:3000/api/listings')
-  const data = await response.json()
+  const snapshot = await db.collection('listings').get()
+  const listings = snapshot.docs.map((doc: QueryDocumentSnapshot) => ({
+      id: doc.id,
+      ...doc.data()
+  }))
   return {
     props: {
-      listings: data
+      listings: listings
     },
   }
 }

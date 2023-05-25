@@ -4,9 +4,9 @@ import logoSVG from '../public/plane-svgrepo-com.svg'
 
 const navigation = [
     { name: 'Listings', href: '/' },
-    { name: 'About Holidu', href: '#' },
     { name: 'My Bookings', href: '#' },
     { name: 'My Listings', href: '#' },
+    { name: 'About Holidu', href: '#' },
 ]
   
 export default function Header() {
