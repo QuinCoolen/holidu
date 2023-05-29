@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
   Bars3Icon
@@ -6,6 +6,12 @@ import {
 import Image from 'next/image'
 import logoSVG from '../public/plane-svgrepo-com.svg'
 import Link from 'next/link'
+import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import firebaseConfig from '../utils/db/firebaseConfig.json';
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 const navigation = [
   { name: 'Listings', href: '/' },
@@ -15,6 +21,21 @@ const navigation = [
 ]
 
 export default function Page() {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
   return (
     <Popover className="relative bg-cyan-600">
       <div className="flex justify-between items-center px-4 py-6 sm:px-6 md:justify-start md:space-x-10">
@@ -43,7 +64,7 @@ export default function Page() {
           </div>
           <div className="ml-10 space-x-4">
               <Link
-                href="#"
+                href="/auth/login"
                 className="inline-block bg-cyan-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75"
               >
                 Sign in
@@ -77,6 +98,7 @@ export default function Page() {
                   </a>
                 ))}
               </div>
+              {user ? (
               <div className="mt-6">
                 <a
                   href="#"
@@ -91,6 +113,9 @@ export default function Page() {
                   </a>
                 </p>
               </div>
+              ) : (
+                <div className="mt-6">Test</div>
+              )}
             </div>
           </div>
         </Popover.Panel>
