@@ -36,3 +36,4 @@ next-env.d.ts
 
 # database
 /utils/db/serviceAccountKey.json
+/utils/db/firebaseConfig.json
