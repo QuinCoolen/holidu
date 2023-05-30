@@ -14,10 +14,8 @@ import firebaseConfig from '../utils/db/firebaseConfig.json';
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const navigation = [
+let navigation = [
   { name: 'Listings', href: '/' },
-  { name: 'My Bookings', href: '#' },
-  { name: 'My Listings', href: '#' },
   { name: 'About Holidu', href: '#' },
 ]
 
@@ -36,6 +34,15 @@ export default function Page() {
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
+  
+  if (user){
+    navigation = [
+      { name: 'Listings', href: '/' },
+      { name: 'My Bookings', href: '#' },
+      { name: 'My Listings', href: '#' },
+      { name: 'About Holidu', href: '#' },
+    ]
+  }
 
   return (
     <Popover className="relative bg-cyan-600">
