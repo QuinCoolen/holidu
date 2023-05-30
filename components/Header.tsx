@@ -3,6 +3,7 @@ import { Popover, Transition } from '@headlessui/react'
 import {
   Bars3Icon
 } from '@heroicons/react/24/solid'
+import { UserCircleIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import logoSVG from '../public/plane-svgrepo-com.svg'
 import Link from 'next/link'
@@ -62,7 +63,10 @@ export default function Page() {
               </a>
             ))}
           </div>
-          <div className="ml-10 space-x-4">
+          {user ? (
+              <UserCircleIcon className="text-white h-8 w-8"></UserCircleIcon>
+            ) : (
+            <div className="ml-10 space-x-4">
               <Link
                 href="/auth/login"
                 className="inline-block bg-cyan-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75"
@@ -70,12 +74,13 @@ export default function Page() {
                 Sign in
               </Link>
               <Link
-                href="#"
+                href="/auth/signup"
                 className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-cyan-600 hover:bg-cyan-50"
               >
                 Sign up
               </Link>
             </div>
+            )}
         </div>
       </div>
 
@@ -99,22 +104,24 @@ export default function Page() {
                 ))}
               </div>
               {user ? (
+                <div className="mt-6">
+                  <UserCircleIcon className="h-6 w-6"></UserCircleIcon>
+                </div>
+              ) : (
               <div className="mt-6">
                 <a
-                  href="#"
+                  href="/auth/signup"
                   className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-cyan-600 hover:bg-cyan-700"
                 >
                   Sign up
                 </a>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?{' '}
-                  <a href="#" className="text-cyan-600 hover:text-cyan-500">
+                  <a href="/auth/login" className="text-cyan-600 hover:text-cyan-500">
                     Sign in
                   </a>
                 </p>
               </div>
-              ) : (
-                <div className="mt-6">Test</div>
               )}
             </div>
           </div>
