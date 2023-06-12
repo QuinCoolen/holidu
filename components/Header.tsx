@@ -39,7 +39,7 @@ export default function Page() {
     navigation = [
       { name: 'Listings', href: '/' },
       { name: 'My Bookings', href: '#' },
-      { name: 'My Listings', href: '#' },
+      { name: 'My Listings', href: '/user/listings' },
       { name: 'About Holidu', href: '#' },
     ]
   }
