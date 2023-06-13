@@ -74,9 +74,7 @@ export default function Page({listing}: {listing: Listing}) {
     return (
         <div className="bg-white">
           <div className="mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-            {/* Product */}
             <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
-              {/* Product image */}
               <div className="lg:row-end-1 lg:col-span-4">
                 <div className="aspect-w-4 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden">
                     <Image
@@ -89,8 +87,6 @@ export default function Page({listing}: {listing: Listing}) {
                     />
                 </div>
               </div>
-    
-              {/* Product details */}
               <div className="max-w-2xl mx-auto mt-14 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
                 <div className="flex flex-col-reverse">
                   <div className="mt-4">

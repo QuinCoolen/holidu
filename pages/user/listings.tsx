@@ -16,33 +16,6 @@ interface Listing {
   highlights?: {[key: string]: number};
 }
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-  
-//   const userID = cookieStore.get('uid')
-
-//   const listingsRef = collection(db, 'listings');
-//   const q = query(listingsRef, where('user', '==', userID));
-//   const listings: { id: string; }[] = [];
-  
-//   const querySnapshot = await getDocs(q);
-  
-//   querySnapshot.forEach((doc) => {
-//     // Add each listing to the listings array
-//     listings.push({
-//       id: doc.id,
-//       ...doc.data(),
-//     });
-//   });
-//   console.log(listings)
-//   // Pass the listings as props to your page
-//   return {
-//     props: {
-//       listings,
-//     },
-//   };
-// }
-
-
 export default function Home() {
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);

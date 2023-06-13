@@ -21,7 +21,6 @@ export default function SignUp() {
             event.preventDefault();
             createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
-                // Signed in 
                 const user = userCredential.user;
                 await setDoc(doc(db, 'users', user.uid), { email: user.email });
                 router.push('/');
