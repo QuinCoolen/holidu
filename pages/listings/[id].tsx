@@ -18,37 +18,22 @@ interface Listing {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const id = context.params?.id;
     if (typeof id !== 'string') {
-        // Handle error case where id is not a string
         throw new Error('ID is not a string');
     }
-    // const response = await fetch(`http://localhost:3000/api/listings/${router.query.id}`)
     const snapshot = db.collection('listings').doc(id)
     const listing = await snapshot.get();
     const data = listing.data()
+
+    if (data?.owner && typeof data.owner === 'object' && data.owner.path) {
+      data.owner = data.owner.path;
+    }
+    
     return {
         props: {
             listing: data
         },
     }
 }
-
-// export default function Page({listing}: {listing: Listing}) {
-//     return (
-//         <div>
-//             <Image
-//               src={listing.imageSrc}
-//               alt={listing.imageAlt}
-//               width={0}
-//               height={0}
-//               sizes="100vw"
-//               className="w-full h-full"
-//             />
-//             <h2>{listing.name}</h2>
-//             <p>{listing.description}</p>
-//             <p>{listing.price}</p>
-//         </div>
-//     )
-// }
 
 const reviews = {
     average: 4,

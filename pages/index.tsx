@@ -11,14 +11,23 @@ interface Listing {
   imageSrc: string;
   name: string;
   price: number;
+  owner: string | null;
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const snapshot = await db.collection('listings').get()
-  const listings = snapshot.docs.map((doc: QueryDocumentSnapshot) => ({
+  const listings = snapshot.docs.map((doc: QueryDocumentSnapshot) => {
+    const data = doc.data();
+    if (data.owner && typeof data.owner === 'object' && data.owner.path) {
+      data.owner = data.owner.path;
+    }
+
+    return {
       id: doc.id,
-      ...doc.data()
-  }))
+      ...data,
+    };
+  });
+
   return {
     props: {
       listings: listings

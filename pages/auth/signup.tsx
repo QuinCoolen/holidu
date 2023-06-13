@@ -4,6 +4,8 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import firebaseConfig from '../../utils/db/firebaseConfig.json';
+import {db} from '@/utils/db/firebaseClient';
+import { doc, setDoc } from 'firebase/firestore';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -11,22 +13,23 @@ const auth = getAuth(app);
 export default function SignUp() {
     const [email, setEmail] =  useState("");
     const [password, setPassword] =  useState("");
-    const [repeat_password, setRepeatPassword] =  useState("");
+    const [repeat_password, setRepeatPassword] =  useState(""); 
     const router = useRouter();
     
     const handleSubmit = async (event: FormEvent) => {
         if(password == repeat_password){
             event.preventDefault();
             createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                router.push('/') 
+                await setDoc(doc(db, 'users', user.uid), { email: user.email });
+                router.push('/');
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorCode, errorMessage)
+                console.log(errorCode, errorMessage);
             });
         } else {
 
