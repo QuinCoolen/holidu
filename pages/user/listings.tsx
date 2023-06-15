@@ -45,12 +45,15 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='grid place-items-center pt-16'>Loading...</div>;
   }
 
   return (
-    <div  className="max-w-2xl mx-auto py-4 px-4 sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
-      <h2 className="text-lg font-medium text-gray-900">My listings</h2>
+    <div className="max-w-2xl mx-auto py-4 px-4 sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className='flex justify-between flex-col lg:flex-row'>
+        <h2 className="text-center text-lg font-medium text-gray-900 lg:text-left">My listings</h2>
+        <button onClick={() => router.push('create' )} type="button" className="w-full lg:w-1/6 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-cyan-600 text-base font-medium text-white hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 sm:col-start-2 sm:text-sm">Create New Listing</button>
+      </div>
       <div className="mt-6 pb-10 border-t border-b border-gray-200 divide-y divide-gray-200 space-y-10">
         {listings.map((listing) => (
           <div key={listing.id} className="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">

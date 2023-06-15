@@ -65,6 +65,47 @@ const reviews = {
       // More reviews...
     ],
 }
+const faqs = [
+  {
+    question: 'How big is the house?',
+    answer:
+      'Very Big!',
+  },
+  {
+    question: 'Can I throw big parties here?',
+    answer:
+      "Yes.",
+  },
+]
+const license = {
+  href: '#',
+  summary:
+    'For personal and professional use. You cannot resell or redistribute these icons in their original or modified state.',
+  content: `
+    <h4>Overview</h4>
+    
+    <p>For personal and professional use. You cannot resell or redistribute these icons in their original or modified state.</p>
+    
+    <ul role="list">
+    <li>You\'re allowed to use the icons in unlimited projects.</li>
+    <li>Attribution is not required to use the icons.</li>
+    </ul>
+    
+    <h4>What you can do with it</h4>
+    
+    <ul role="list">
+    <li>Use them freely in your personal and professional work.</li>
+    <li>Make them your own. Change the colors to suit your project or brand.</li>
+    </ul>
+    
+    <h4>What you can\'t do with it</h4>
+    
+    <ul role="list">
+    <li>Don\'t be greedy. Selling or distributing these icons in their original or modified state is prohibited.</li>
+    <li>Don\'t be evil. These icons cannot be used on websites or applications that promote illegal or immoral beliefs or activities.</li>
+    </ul>
+  `,
+}
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -198,7 +239,7 @@ export default function Page({listing}: {listing: Listing}) {
                       >
                         Customer Reviews
                       </Tab>
-                      {/* <Tab
+                      <Tab
                         className={({ selected }) =>
                           classNames(
                             selected
@@ -221,7 +262,7 @@ export default function Page({listing}: {listing: Listing}) {
                         }
                       >
                         License
-                      </Tab> */}
+                      </Tab>
                     </Tab.List>
                   </div>
                   <Tab.Panels as={Fragment}>
@@ -261,6 +302,28 @@ export default function Page({listing}: {listing: Listing}) {
                         </div>
                       ))}
                     </Tab.Panel>
+
+                    <Tab.Panel as="dl" className="text-sm text-gray-500">
+                  <h3 className="sr-only">Frequently Asked Questions</h3>
+
+                  {faqs.map((faq) => (
+                    <Fragment key={faq.question}>
+                      <dt className="mt-10 font-medium text-gray-900">{faq.question}</dt>
+                      <dd className="mt-2 prose prose-sm max-w-none text-gray-500">
+                        <p>{faq.answer}</p>
+                      </dd>
+                    </Fragment>
+                  ))}
+                </Tab.Panel>
+
+                <Tab.Panel className="pt-10">
+                  <h3 className="sr-only">License</h3>
+
+                  <div
+                    className="prose prose-sm max-w-none text-gray-500"
+                    dangerouslySetInnerHTML={{ __html: license.content }}
+                  />
+                </Tab.Panel>
                   </Tab.Panels>
                 </Tab.Group>
               </div>
