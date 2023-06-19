@@ -10,8 +10,6 @@ import Link from 'next/link'
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import firebaseConfig from '../utils/db/firebaseConfig.json';
-import Link from 'next/link'
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
