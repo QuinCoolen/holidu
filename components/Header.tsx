@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import firebaseConfig from '../utils/db/firebaseConfig.json';
+import Link from 'next/link'
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -48,13 +49,13 @@ export default function Page() {
     <Popover className="relative bg-cyan-600">
       <div className="flex justify-between items-center px-4 py-6 sm:px-6 md:justify-start md:space-x-10">
         <div>
-          <a href="/">
+          <Link href="/">
             <span className="sr-only">Holidu</span>
             <Image
             className="h-10 w-auto"
             src={logoSVG}
             alt='Holidu Logo' />
-          </a>
+          </Link>
         </div>
         <div className="-mr-2 -my-2 md:hidden">
           <Popover.Button className="bg-cyan-600 rounded-md p-2 inline-flex items-center justify-center text-white hover:text-cyan-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500">
@@ -65,9 +66,9 @@ export default function Page() {
         <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
           <div className='hidden md:gap-10 md:flex md:items-center md:justify-between'>
             {navigation.map((link) => (
-              <a key={link.name} href={link.href} className="text-base font-medium text-white hover:text-cyan-50">
+              <Link key={link.name} href={link.href} className="text-base font-medium text-white hover:text-cyan-50">
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
           {user ? (
@@ -105,9 +106,9 @@ export default function Page() {
             <div className="py-6 px-5">
               <div className="grid grid-cols-2 gap-4">
                 {navigation.map((link) => (
-                  <a key={link.name} href={link.href} className="text-base font-medium text-gray-900 hover:text-gray-700">
+                  <Link key={link.name} href={link.href} className="text-base font-medium text-gray-900 hover:text-gray-700">
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
               {user ? (
@@ -116,17 +117,17 @@ export default function Page() {
                 </div>
               ) : (
               <div className="mt-6">
-                <a
+                <Link
                   href="/auth/signup"
                   className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-cyan-600 hover:bg-cyan-700"
                 >
                   Sign up
-                </a>
+                </Link>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?{' '}
-                  <a href="/auth/login" className="text-cyan-600 hover:text-cyan-500">
+                  <Link href="/auth/login" className="text-cyan-600 hover:text-cyan-500">
                     Sign in
-                  </a>
+                  </Link>
                 </p>
               </div>
               )}
